@@ -1,0 +1,12 @@
+# https://rust-lang.github.io/rustfmt/?version=v1.7.1&search=#max_width
+# Maximum width of each line
+# Default: 100
+max_width = 100
+# https://rust-lang.github.io/rustfmt/?version=v1.7.1&search=#tab_spaces
+# Number of spaces per tab
+# Default: 4
+tab_spaces = 2
+# https://rust-lang.github.io/rustfmt/?version=v1.7.1&search=#hard_tabs
+# Use tab characters for indentation, spaces for alignment
+# Default: false
+hard_tabs = false

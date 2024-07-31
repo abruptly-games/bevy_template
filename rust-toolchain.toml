@@ -1,0 +1,9 @@
+# https://rust-lang.github.io/rustup/overrides.html#the-toolchain-file
+[toolchain]
+# https://bevyengine.org/learn/quick-start/getting-started/setup/#nightly-rust-compiler
+# Bevy takes advantage of the latest Rust features and optimizations, so setting the toolchain to nightly is recommended.
+channel = "nightly"
+# Which components to install for this toolchain
+components = ["rustfmt", "clippy"]
+# Which targets to install for this toolchain
+targets = ["wasm32-unknown-unknown"]
