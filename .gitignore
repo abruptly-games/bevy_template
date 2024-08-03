@@ -4,3 +4,5 @@
 # Misc
 .DS_Store
 
+# Game Settings
+bevy_game
