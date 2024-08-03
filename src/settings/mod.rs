@@ -45,12 +45,15 @@ pub trait Settings {
   }
 
   #[cfg(target_arch = "wasm32")]
-  pub fn load() -> Self {
+  fn load() -> Self
+  where
+    Self: Sized + Default + for<'a> Deserialize<'a> + Serialize,
+  {
     let local_storage = web_sys::window().unwrap().local_storage().unwrap().unwrap();
-    let settings: Settings = match local_storage.get("settings").unwrap() {
+    let settings: Self = match local_storage.get("settings").unwrap() {
       Some(settings) => serde_json::from_str(&settings).unwrap(),
       None => {
-        let settings = Settings::default();
+        let settings = Self::default();
         settings.save();
         settings
       }
@@ -64,16 +67,17 @@ pub trait Settings {
     Self: Default + Serialize,
   {
     let settings_path = Self::get_settings_path();
-
     let settings = ron::to_string(self).unwrap();
 
     std::fs::create_dir_all(settings_path.parent().unwrap()).unwrap();
-
     std::fs::write(settings_path, settings).unwrap();
   }
 
   #[cfg(target_arch = "wasm32")]
-  pub fn save(&self) {
+  pub fn save(&self)
+  where
+    Self: Default + Serialize,
+  {
     let local_storage = web_sys::window().unwrap().local_storage().unwrap().unwrap();
     let settings = serde_json::to_string(self).unwrap();
     local_storage.set(NAME, &settings).unwrap();
