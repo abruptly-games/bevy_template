@@ -1,5 +1,5 @@
-use bevy::prelude::*;
 use crate::prelude::*;
+use bevy::prelude::*;
 use enum_iterator::{all, Sequence};
 
 pub struct AppStatePlugin;
@@ -23,10 +23,6 @@ impl Plugin for AppStatePlugin {
 #[derive(Debug, PartialEq, Eq, Clone, Copy, Hash, Default, States, Reflect, Sequence)]
 pub enum AppState {
   #[default]
-  /// The `default` state of the application.
-  /// In this state the application is initializing.
-  /// We can load window settings, assets, etc.
-  Splash,
   /// The `loading` state of the application.
   /// In this state the application is loading assets.
   AssetsLoading,
