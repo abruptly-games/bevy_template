@@ -1,4 +1,3 @@
-use crate::prelude::*;
 use bevy::prelude::*;
 
 pub struct SettingsPlugin<S: SubStates> {
