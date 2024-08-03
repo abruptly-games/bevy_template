@@ -2,7 +2,6 @@ use serde::{Deserialize, Serialize};
 
 mod audio;
 mod window;
-// pub mod controls;
 
 pub use audio::AudioSettings;
 pub use window::WindowSettings;
@@ -50,7 +49,7 @@ pub trait Settings {
     Self: Sized + Default + for<'a> Deserialize<'a> + Serialize,
   {
     let local_storage = web_sys::window().unwrap().local_storage().unwrap().unwrap();
-    let settings: Self = match local_storage.get("settings").unwrap() {
+    let settings: Self = match local_storage.get(Self::NAME).unwrap() {
       Some(settings) => serde_json::from_str(&settings).unwrap(),
       None => {
         let settings = Self::default();
@@ -80,6 +79,6 @@ pub trait Settings {
   {
     let local_storage = web_sys::window().unwrap().local_storage().unwrap().unwrap();
     let settings = serde_json::to_string(self).unwrap();
-    local_storage.set(NAME, &settings).unwrap();
+    local_storage.set(Self::NAME, &settings).unwrap();
   }
 }

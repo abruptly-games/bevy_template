@@ -17,6 +17,7 @@ fn main() -> AppExit {
   // Add the background color to the App
   app.insert_resource(ClearColor(colors::GRAY_900));
 
+  // Settings loading
   let audio_settings = AudioSettings::load();
   let window_settings = WindowSettings::load();
 
